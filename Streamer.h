@@ -341,7 +341,7 @@ namespace Streams
      
         Thread						^XferThread;
 
-        CCyUSBDevice				*USBDevice;
+        static CCyUSBDevice				*USBDevice;
 
         static const int				MAX_QUEUE_SZ = 64;
         static const int				VENDOR_ID	= 0x04B4;
@@ -815,6 +815,24 @@ namespace Streams
             PUCHAR			*contexts		= new PUCHAR[QueueSize];
             OVERLAPPED		inOvLap[MAX_QUEUE_SZ];
 
+#define     VENDOR_CMD_START_TRANSFER           0xB5
+            CCyControlEndPoint* ControlEndPt = (CCyControlEndPoint*)(USBDevice->EndPointOf(0));
+
+            LONG dataLength = 0;
+            ControlEndPt->Target = TGT_DEVICE;
+            ControlEndPt->ReqType = REQ_VENDOR;
+            // Vendor Command that is transmitted for starting the read.
+            ControlEndPt->ReqCode = VENDOR_CMD_START_TRANSFER;
+            ControlEndPt->Direction = DIR_TO_DEVICE;
+            //// Send Value = 1 and Index = 0, to kick start the transaction.
+            ControlEndPt->Value = 0x0001;
+            ControlEndPt->Index = 0;
+
+            // Send vendor command now......
+            ControlEndPt->XferData(NULL, dataLength, NULL);
+
+
+
             long len = EndPt->MaxPktSize * PPX; // Each xfer request will get PPX isoc packets
 
             EndPt->SetXferSize(len);
@@ -896,6 +914,14 @@ namespace Streams
 
                         if (bShowData)
                             Display16Bytes(buffers[i]);
+                        for (int q = 0; q < rLen/4-1; q++)
+                        {
+                            UINT32* pbuf = (UINT32*)(buffers+i);
+                            if ((pbuf[q + 1] - pbuf[q]) != 1)
+                            {
+                                q = q;
+                            }
+                        }
                     } 
                     else
                         Failures++; 
@@ -929,6 +955,19 @@ namespace Streams
 
             // Memory clean-up
             AbortXferLoop(QueueSize,buffers,isoPktInfos,contexts,inOvLap);
+
+            ControlEndPt->Target = TGT_DEVICE;
+            ControlEndPt->ReqType = REQ_VENDOR;
+            // Vendor Command that is transmitted for starting the read.
+            ControlEndPt->ReqCode = VENDOR_CMD_START_TRANSFER;
+            ControlEndPt->Direction = DIR_TO_DEVICE;
+            //// Send Value = 0 and Index = 0, to stop the transaction.
+            ControlEndPt->Value = 0x0000;
+            ControlEndPt->Index = 0;
+
+            // Send vendor command now......
+            ControlEndPt->XferData(NULL, dataLength, NULL);
+
         }
 
 
