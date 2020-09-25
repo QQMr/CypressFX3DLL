@@ -1,5 +1,0 @@
-D:\Study\Cypress_FX3\streamer\x86\Debug\Streamer.vcxprojAssemblyReference.cache
-D:\Study\Cypress_FX3\streamer\x86\Debug\Streams.Streamer.resources
-D:\Study\Cypress_FX3\streamer\x86\Debug\Streamer.vcxproj.GenerateResource.cache
-D:\Study\Cypress_FX3\streamer\x86\Debug\Streamer.exe
-D:\Study\Cypress_FX3\streamer\x86\Debug\Streamer.pdb
