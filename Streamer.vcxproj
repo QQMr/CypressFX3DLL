@@ -234,6 +234,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="CyAPIWrapper.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -243,6 +244,7 @@
     <ClCompile Include="Streamer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CyAPIWrapper.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="resource1.h" />
     <ClInclude Include="stdafx.h" />
