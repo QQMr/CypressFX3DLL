@@ -11,6 +11,7 @@
     <OutputPath>.</OutputPath>
     <Name>TestCyAPIWrapperPython</Name>
     <RootNamespace>TestCyAPIWrapperPython</RootNamespace>
+    <IsWindowsApplication>False</IsWindowsApplication>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,6 +23,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="TestCyAPIWrapperPython.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CyAPIWrapperDLL\CyAPIWrapperDLL.vcxproj">
+      <Name>CyAPIWrapperDLL</Name>
+      <Project>{54c0acd6-fbcc-49a0-8181-17ebbb793ba4}</Project>
+      <Private>True</Private>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
