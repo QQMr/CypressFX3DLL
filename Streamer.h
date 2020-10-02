@@ -914,6 +914,7 @@ namespace Streams
 
                         if (bShowData)
                             Display16Bytes(buffers[i]);
+                        /*
                         for (int q = 0; q < rLen/4-1; q++)
                         {
                             UINT32* pbuf = (UINT32*)(buffers+i);
@@ -922,6 +923,7 @@ namespace Streams
                                 q = q;
                             }
                         }
+                        */
                     } 
                     else
                         Failures++; 

@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30517.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Streamer", "Streamer.vcxproj", "{4B29ABC5-DE66-44B7-B6DE-8F7BBFA0C02A}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestCyAPIWrapper", "TestCyAPIWrapper\TestCyAPIWrapper.vcxproj", "{EC33AA76-6CD7-421E-814E-31AE83C9466C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -21,6 +23,14 @@ Global
 		{4B29ABC5-DE66-44B7-B6DE-8F7BBFA0C02A}.Release|Win32.Build.0 = Release|Win32
 		{4B29ABC5-DE66-44B7-B6DE-8F7BBFA0C02A}.Release|x64.ActiveCfg = Release|x64
 		{4B29ABC5-DE66-44B7-B6DE-8F7BBFA0C02A}.Release|x64.Build.0 = Release|x64
+		{EC33AA76-6CD7-421E-814E-31AE83C9466C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EC33AA76-6CD7-421E-814E-31AE83C9466C}.Debug|Win32.Build.0 = Debug|Win32
+		{EC33AA76-6CD7-421E-814E-31AE83C9466C}.Debug|x64.ActiveCfg = Debug|x64
+		{EC33AA76-6CD7-421E-814E-31AE83C9466C}.Debug|x64.Build.0 = Debug|x64
+		{EC33AA76-6CD7-421E-814E-31AE83C9466C}.Release|Win32.ActiveCfg = Release|Win32
+		{EC33AA76-6CD7-421E-814E-31AE83C9466C}.Release|Win32.Build.0 = Release|Win32
+		{EC33AA76-6CD7-421E-814E-31AE83C9466C}.Release|x64.ActiveCfg = Release|x64
+		{EC33AA76-6CD7-421E-814E-31AE83C9466C}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
