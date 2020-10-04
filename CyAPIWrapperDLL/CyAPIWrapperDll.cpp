@@ -1,7 +1,8 @@
 #include <utility>
 #include <limits.h>
 #include "CyAPIWrapperDll.h"
-#include <windows.h>
+#include "..\CyAPIWrapper.h"
+
 // DLL internal state variables:
 static unsigned long long previous_;  // Previous value, if any
 static unsigned long long current_;   // Current sequence value
@@ -51,4 +52,58 @@ unsigned long long __cdecl fibonacci_current()
 unsigned __cdecl fibonacci_index()
 {
     return index_;
+}
+
+CyAPIWrapper* mCyAPIWrapper;
+void __cdecl init()
+{
+    mCyAPIWrapper = new CyAPIWrapper();
+}
+
+
+#define UNIT_DATA 4
+int __cdecl GetReceiveData(UINT32 *data,int index)
+{
+    int size = mCyAPIWrapper->queueReceiveData[index].size();
+    /*
+    for (size_t i = 0; i < 4; i++)
+    {
+        data[i] = mCyAPIWrapper->queueReceiveData[index].data;
+    }
+    */
+
+    memcpy(data, mCyAPIWrapper->queueReceiveData[index].data()
+        , mCyAPIWrapper->queueReceiveData[index].size());
+
+
+    
+    return size/ UNIT_DATA;
+}
+
+int __cdecl GetXferLength()
+{
+    int size = mCyAPIWrapper->XferSize();
+    return size;
+}
+
+int __cdecl GetReceiveTotalNumber()
+{
+    return mCyAPIWrapper->ReceiveDataIndex;
+}
+
+int __cdecl ConnectDevice()
+{
+    return mCyAPIWrapper->ConnectDevice();
+}
+int __cdecl StartSampleData()
+{
+    return mCyAPIWrapper->StartSampleData();
+}
+int __cdecl EndSampleData()
+{
+    return mCyAPIWrapper->EndSampleData();
+}
+const char* __cdecl  DeviceName()
+{
+    return mCyAPIWrapper->DeviceName();
 }

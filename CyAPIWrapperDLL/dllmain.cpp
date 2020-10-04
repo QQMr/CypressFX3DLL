@@ -2,6 +2,7 @@
 //#include "pch.h"
 //#include "stdafx.h"
 #include <windows.h>
+#include <stdio.h>
 
 using namespace std;
 
@@ -12,6 +13,7 @@ BOOL APIENTRY DllMain( HMODULE hModule,
                        LPVOID lpReserved
                      )
 {
+    printf("intit\n");
     switch (ul_reason_for_call)
     {
     case DLL_PROCESS_ATTACH:

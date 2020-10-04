@@ -27,7 +27,7 @@ class CyAPIWrapper
 // XferLoop is static because it is used as a separate thread.
 
 	 CCyUSBEndPoint* EndPt;
-	 int					PPX = 4;
+	 int					PPX = 16;
 	 int					QueueSize = 0x10;
 	 int					TimeOut =1500;
 	 bool					bShowData = false;
@@ -41,6 +41,19 @@ class CyAPIWrapper
 	
 	void StartThreadReceive();
 	
+	void AbortXferLoop(int pending, PUCHAR* buffers, CCyIsoPktInfo** isoPktInfos, PUCHAR* contexts, OVERLAPPED inOvLap[]);
+	void Display16Bytes(UCHAR*);
+	void Display(string);
+	void ShowStats(clock_t t, long bytesXferred, unsigned long successes, unsigned long failures);
+	
+
+	void AddReceiveData(UINT8*, unsigned);
+
+	const int MAX_RECEIVE_LENGTH = 10000;
+	
+	
+
+	string strDeviceData;
 public:
 	CyAPIWrapper(int vendorID, int proID);
 	CyAPIWrapper();
@@ -48,16 +61,10 @@ public:
 	 bool ConnectDevice();
 	 bool StartSampleData();
 	 bool EndSampleData();
-	 void AbortXferLoop(int pending, PUCHAR* buffers, CCyIsoPktInfo** isoPktInfos, PUCHAR* contexts, OVERLAPPED inOvLap[]);
-	 void Display16Bytes(UCHAR*);
-	 void Display(string);
-	 void ShowStats(clock_t t, long bytesXferred, unsigned long successes, unsigned long failures);
+	 const char* DeviceName();
 	 void XferLoop();
-
-	 void AddReceiveData(UINT8 *,unsigned);
-
-	 const int MAX_RECEIVE_LENGTH = 20000;
-	 vector< vector<UINT8> > queueReceiveData;
+	 long XferSize();
 	 volatile int ReceiveDataIndex = 0;
+	 vector< vector<UINT8> > queueReceiveData;
 };
 

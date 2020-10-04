@@ -1,6 +1,8 @@
 #pragma once
 #pragma once
 
+#include <windows.h>
+
 #ifdef CYAPIWRAPPERDLL_EXPORTS
 #define MATHLIBRARY_API __declspec(dllexport)
 #else
@@ -21,3 +23,15 @@ extern "C" MATHLIBRARY_API unsigned long long fibonacci_current();
 
 // Get the position of the current value in the sequence.
 extern "C" MATHLIBRARY_API unsigned __cdecl fibonacci_index();
+
+
+extern "C" MATHLIBRARY_API void __cdecl init();
+extern "C" MATHLIBRARY_API int __cdecl GetReceiveData(UINT32 * data,int index);
+
+extern "C" MATHLIBRARY_API int __cdecl GetXferLength();
+extern "C" MATHLIBRARY_API int __cdecl GetReceiveTotalNumber();
+
+extern "C" MATHLIBRARY_API int __cdecl ConnectDevice();
+extern "C" MATHLIBRARY_API int __cdecl StartSampleData();
+extern "C" MATHLIBRARY_API int __cdecl EndSampleData();
+extern "C" MATHLIBRARY_API const char* __cdecl  DeviceName();

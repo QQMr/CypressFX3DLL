@@ -38,7 +38,7 @@ bool CyAPIWrapper::ConnectDevice()
  
         stringstream  stringStream;
         USBDevice->Open(i);
-        string strDeviceData = "";
+        strDeviceData = "";
         string strTemp = string(USBDevice->FriendlyName);
         strDeviceData = strDeviceData + "(0x";// string::Concat(strDeviceData, "(0x");
         stringStream << setfill('0') << setw(4) << right << hex << USBDevice->VendorID;
@@ -103,6 +103,11 @@ bool CyAPIWrapper::EndSampleData()
 
     receiveThread->join();
     return Successes;
+}
+
+const char* CyAPIWrapper::DeviceName()
+{
+    return strDeviceData.c_str();
 }
 
 void CyAPIWrapper::AbortXferLoop(int pending, PUCHAR* buffers, CCyIsoPktInfo** isoPktInfos, PUCHAR* contexts, OVERLAPPED inOvLap[])
@@ -335,6 +340,11 @@ void CyAPIWrapper::XferLoop()
     AbortXferLoop(QueueSize, buffers, isoPktInfos, contexts, inOvLap);
 
 
+}
+
+long CyAPIWrapper::XferSize()
+{
+    return EndPt->MaxPktSize * PPX;
 }
 
 void CyAPIWrapper::AddReceiveData(UINT8* dataArray, unsigned size)
